@@ -10,7 +10,7 @@ if [ "${1:-0}" = clear ]; then
 	exit 0
 fi
 
-sudo mount -o loop "$HOME"/reps/auto_create_virt/CentOS-6.10-x86_64-minimal.iso /mnt/cdrom
+#mount -o loop "$HOME"/reps/auto_create_virt/CentOS-6.10-x86_64-minimal.iso /mnt/cdrom
 
 sudo virt-install --debug \
 	--connect=qemu:///system \
@@ -29,7 +29,7 @@ sudo virt-install --debug \
 	--console pty,target_type=serial \
 	--disk /var/lib/libvirt/images/centos6.qcow2,device=disk,bus=virtio,size=8 \
 	--initrd-inject=ks.cfg \
-	--location /mnt/cdrom/ \
+	--location /var/lib/libvirt/images/CentOS-6.10-x86_64-minimal.iso \
 	--initrd-inject 'ks.cfg' \
 	--extra-args 'ks=file:/ks.cfg console=tty0 console=ttyS0,115200n8'
 #	--disk size=8,format=qcow2 \
